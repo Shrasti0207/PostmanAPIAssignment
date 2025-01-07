@@ -31,7 +31,7 @@ jobs:
     # Step 4: Run Newman tests
     - name: Run Postman Tests with Newman
       run: |
-        newman run "JsonPlaceHolder.postman_collection.json" -e "TestVariable.postman_environment.json" -d "./data/PostmanAssignment.csv" -r cli,htmlextra --reporter-html-export testArtifacts/newman-report.html
+        newman run "PostmanApiTesting/JsonPlaceHolder.postman_collection.json" -e "PostmanApiTesting/TestVariable.postman_environment.json" -d "./data/PostmanAssignment.csv" -r cli,htmlextra --reporter-html-export testArtifacts/newman-report.html
 
     # Step 5: Upload Newman report as artifact
     - name: Upload Test Results
