@@ -12,8 +12,10 @@ jobs:
 
     steps:
     # Step 1: Check out the code
-    - name: Checkout repository
-      uses: actions/checkout@v3
+    - uses: actions/checkout@v3
+    - name: Create dir
+      run: |
+        mkdir TestArtifact
 
     # Step 2: Set up Node.js
     - name: Setup Node.js
@@ -29,11 +31,11 @@ jobs:
     # Step 4: Run Newman tests
     - name: Run Postman Tests with Newman
       run: |
-        newman run "JsonPlaceHolder.postman_collection.json" -e "TestVariable.postman_environment.json" -d "./data/PostmanAssignment.csv" -r cli,htmlextra --reporter-html-export newman-report.html
+        newman run "JsonPlaceHolder.postman_collection.json" -e "TestVariable.postman_environment.json" -d "./data/PostmanAssignment.csv" -r cli,htmlextra --reporter-html-export testArtifacts/newman-report.html
 
     # Step 5: Upload Newman report as artifact
     - name: Upload Test Results
       uses: actions/upload-artifact@v3
       with:
-        name: newman-report
-        path: newman-report.xml
+        name: Reports
+        path: testArtifacts
